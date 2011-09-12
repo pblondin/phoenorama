@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<script language="JavaScript">
+	jQuery(document).ready(function(){
+		$( "#progressbar" ).progressbar({
+			value: 80
+		});
+	});
+</script>
+<style>
+	.ui-progressbar-value { background-image: url(/img/style/pbar-ani.gif); }
+</style>
+<div id="scan result">
+	<h3>Launch project: {{ my_project.name|capfirst }}</h3>
+	Target: {{ my_project.target }} <br />
+	Config: {{ o.config }} <br />
+	<hr/><br />
+	Scan is now running! Soon you'll be able to get the results <a href="/project/result/{{ my_project.id }}">here</a>.
+	<style>
+		.ui-progressbar-value { background-image: url(/img/style/pbar-ani.gif); }
+	</style>
+	<div id="progressbar" style="margin-right: 90%;"></div>
+</div>
+{% endblock %}

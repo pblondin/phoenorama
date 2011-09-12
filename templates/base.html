@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>{% block title %}{% if page_title %}{{ page_title}} - {% endif %}{{ site_name}}{% endblock %}</title>
+	<meta name="keywords" content="{{ meta_keywords }}"/>
+	<meta name="description" content="{{ meta_description }}"/>
+	<link rel="stylesheet" href="/css/base.css" type="text/css" media="screen" charset="utf-8"/>
+	<link rel="stylesheet" href="/css/custom-theme/jquery-ui-1.8.7.custom.css" type="text/css" media="screen" charset="utf-8"/>
+	<link rel="stylesheet" href="/css/colorbox/colorbox.css" type="text/css" media="screen" charset="utf-8"/>
+	<link rel="stylesheet" href="/css/slideshow/slideshow.css" type="text/css" media="screen" charset="utf-8"/>
+	<link rel="stylesheet" href="/css/menu/fg.menu.css" type="text/css" media="screen" charset="utf-8"/>
+		
+	<script src="/js/jquery-1.4.4.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/jquery-ui-1.8.7.custom.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/jquery.colorbox.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/jquery.slideshow.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/jquery.menu.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/main-control.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+{% include "header.html" %}
+<div id="wrap-content" class="ui-widget-shadow ui-corner-all" style="opacity: 1;">
+	<div id="content" class="ui-widget ui-widget-content ui-corner-all">
+	{% block content %}{% endblock %}
+	</div>
+</div>
+{% include "footer.html" %}
+</body>
+</html>

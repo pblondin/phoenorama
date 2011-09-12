@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+{% block content %}
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript" src="/js/jquery.gvChart-1.0.1.min.js"></script>
+<script type="text/javascript">
+	gvChartInit();
+</script>
+<script language="JavaScript">
+	jQuery(document).ready(function(){				
+		$("#report tr:odd").addClass("odd");
+        $("#report tr:not(.odd)").hide();
+        $("#report tr:first-child").show();     
+        $("#report tr.odd").click(function(){
+			$(this).next("tr").toggle();
+            $(this).find("#arrow").toggleClass('ui-icon-triangle-1-s');
+        });
+		
+		// Add tabs for each host
+		$( "#tabs" ).tabs({
+			ajaxOptions: {
+				error: function( xhr, status, index, anchor ) {
+					$( anchor.hash ).html( "Couldn't load this tab. We'll try to fix this as soon as possible. " );
+				}
+			}
+		}).find( ".ui-tabs-nav" ).sortable({ axis: "x" });		
+		
+		// Create pie chart for total of vulnerabilities
+		$("#vulns_table").gvChart({
+			chartType: 'PieChart',
+			gvSettings: {
+				width: 500, height: 400,
+	            is3D: true,
+				colors: ['red', 'orange', 'yellow', 'green', 'blue', 'purple'],
+				chartArea: {left:20,top:50,width:"100%",height:"70%"},
+				backgroundColor: 'black',
+				legendTextStyle: {color: 'white'},
+				titleTextStyle: {color: 'white', fontSize: 14},
+			}
+		});
+		
+		// Create a column ba chart for vulns/host
+		$("#vulns_host_table").gvChart({
+			chartType: 'ColumnChart',
+			gvSettings: {
+	            width:600, height:400,
+				backgroundColor: 'black',
+				colors: ['red', 'orange', 'yellow', 'green', 'blue', 'purple'],
+				chartArea: {left:20,top:50,width:"80%",height:"70%"},
+				legendTextStyle: {color: 'white'},
+				titleTextStyle: {color: 'white', fontSize: 14},
+				hAxis: {slantedText:false, slantedTextAngle:45, textStyle: {color: 'white'} },
+			}
+		});
+	});
+</script>
+<h2>Scan result for project: <i>{{ my_project.name }}</i></h2>
+{% if finish %}
+	<br/>
+	<div id="executive_summary">
+		<table>
+			<tr>
+				<td class="tdchart">
+					<table id="vulns_table">
+						<caption>Total vulnerabilities discovered</caption>
+						<thead>
+							<tr>
+								<th></th>
+								<th>Critical</th>
+								<th>High</th>
+								<th>Medium</th>
+								<th>Low</th>
+								<th>None</th>
+								<th>Unknown</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th></th>
+								<td>2</td>
+								<td>3</td>
+								<td>7</td>
+								<td>12</td>
+								<td>8</td>
+								<td>1</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+				<td class="tdchart">
+					<table id="vulns_host_table">
+						<caption>Number of vulnerabilities by host</caption>
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>192.168.103.11</th>
+								<th>192.168.103.12</th>
+								<th>192.168.103.102</th>
+								<th>192.168.103.103</th>
+								<th>192.168.103.1</th>
+								<th>192.168.103.2</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>Critical</th>
+								<td>2</td>
+								<td>1</td>
+								<td>1</td>
+								<td>0</td>
+								<td>0</td>
+								<td>3</td>
+							</tr>
+							<tr>
+								<th>High</th>
+								<td>2</td>
+								<td>3</td>
+								<td>1</td>
+								<td>0</td>
+								<td>2</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<th>Medium</th>
+								<td>6</td>
+								<td>4</td>
+								<td>2</td>
+								<td>7</td>
+								<td>1</td>
+								<td>3</td>
+							</tr>
+							<tr>
+								<th>Low</th>
+								<td>10</td>
+								<td>9</td>
+								<td>6</td>
+								<td>11</td>
+								<td>6</td>
+								<td>3</td>
+							</tr>
+							<tr>
+								<th>None</th>
+								<td>5</td>
+								<td>2</td>
+								<td>3</td>
+								<td>1</td>
+								<td>4</td>
+								<td>3</td>
+							</tr>
+							<tr>
+								<th>Unknown</th>
+								<td>8</td>
+								<td>7</td>
+								<td>4</td>
+								<td>0</td>
+								<td>3</td>
+								<td>2</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<div id="tabs">
+			<ul>
+				<li><a href="#tabs-1">{{ my_project.target}}<a/></li>
+				<li><a href="#tabs-2">{{ my_project.target}}<a/></li>
+				<li><a href="#tabs-3">{{ my_project.target}}<a/></li>
+				<li><a href="#tabs-4">{{ my_project.target}}<a/></li>
+			</ul>
+			<div id="tabs-1">
+				<br/><br/>
+				<div id="result">
+					<table id="report">
+						<tr>
+							<th></th>
+							<th>Title</th>
+							<th>Summary</th>
+							<th>Service</th>
+							<th>Risk factor</th>
+						</tr>
+						{% for result in results %}
+						<tr>
+							<td><span id="arrow" class="ui-icon ui-icon-triangle-1-e"></span></td>
+							<td>{{ result.title }}</td>
+							<td>{{ result.summary }}</td>
+							<td>{{ result.service }}</td>
+							<td>{{ result.get_risk_factor_display }}</td>
+						</tr>
+						<tr>
+							<td colspan="5" class="result-details">
+								<h4><i>Description</i></h4>
+								{{ result.description }}
+								<ul>
+				                    <li>NVT: <a href="http://www.openvas.org/?oid={{ result.nvt.oid }}">{{ result.nvt.oid }}</a></li>
+				                    <li>CVE: <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name={{ result.cve }}">{{ result.cve }}</a></li>
+				                    <li>BID: <a href="http://www.securityfocus.com/bid/{{ result.bid }}">{{ result.bid }}</a></li>
+				                 </ul>  
+							</td>
+						</tr>
+						{% endfor %}
+					</table>
+				</div>
+			</div>
+			<div id="tabs-2">test2</div>
+			<div id="tabs-3">test3</div>
+			<div id="tabs-4">test4</div>
+		</div>
+	</div>
+	<br/><br/>
+{% else %}
+	The scan has not finished yet, please come back later!
+{% endif %}
+{% endblock %}

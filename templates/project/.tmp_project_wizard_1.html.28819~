@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<script type="text/javascript" src="/media/js/admin/RelatedObjectLookups.js"></script> 
+<script language="JavaScript">
+	jQuery(document).ready(function(){
+		$("#create-project-button").button();
+	});
+</script>
+<h2>Add project</h2>
+<table>
+<form method="post" action="">
+	{% csrf_token %}
+	{% include "form/form-error.html" %}
+	{% for field in form %}
+	<tr>
+		<td>{{ field.label_tag }}</td>
+		<td>{{ field }}</td>
+		{% include "form/field-error.html" %}
+	</tr>	
+	{% endfor %}
+	<tr>
+		<td>
+			<input id="create-project-button" type="submit" value="Save" />
+		</td>
+	</tr>
+</form>
+</table>
+{% endblock %}

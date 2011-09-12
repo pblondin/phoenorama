@@ -1,0 +1,70 @@
+<div id="header" class="ui-widget ui-widget-content">
+    <div id="nav">
+        <button id="menu1">
+            Main
+        </button>
+        <div id="menu-items1" class="hidden">
+            <ul>
+                <li>
+                    <a href="/project">View projects</a>
+                </li>
+                <li>
+                    <a href="/project/add">Create a new project</a>
+                </li>
+                <li>
+                    <a href="#">View reports</a>
+                </li>
+            </ul>
+        </div>
+        <button id="menu2">
+            Quick links
+        </button>
+        <div id="menu-items2" class="hidden">
+            <ul>
+                <li>
+                    <a href="#">Account</a>
+                    <ul>
+                        <li>
+                            <a href="/account/my_account">My account</a>
+                        </li>
+                        <li>
+                            <a href="/account/password/change">Change password</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/help">Help</a>
+                </li>
+            </ul>
+        </div>
+		{% if user.is_authenticated %}
+	        <div id="login">
+	            <a id="myaccount-button" href="/account/my_account">My account</a>
+	            <a id="logout-button" href="/account/logout">Logout</a>
+	            <a id="help-button" href="/help">?</a>
+	        </div>
+		{% else %}
+			<div id="login">
+	            <a id="register-button" href="/account/register">Register</a>
+	            <a id="login-button" href="/account/login">Login</a>
+	            <a id="help-button" href="/help">?</a>
+	        </div>
+		{% endif %}
+    </div>
+    <div id="scan">
+        <div id="logo">
+            <a title="Phoenorama" href="/"><img alt="Phoenorama" src="/img/logo-small.png"/></a>
+        </div>
+        <form id="scan-form" action="/project/wizard/" method="POST">
+            {% csrf_token %}
+            <input id="scan-input" class="ui-widget" type="text">
+			<button id="scan-button">Scan</button>
+        </form>
+    </div>
+    <div id="scan-filters"></div>
+    <div id="scan-bar" class="ui-state-default">
+        <span class="ui-icon ui-icon-triangle-1-s" style="float: left; margin-left: 30%;"></span>
+        <span class="ui-icon ui-icon-triangle-1-s" style="float: right; margin-right: 30%;"></span>
+        <div class="ui-helper-clearfix"></div>
+    </div>
+</div>

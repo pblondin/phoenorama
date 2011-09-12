@@ -1,0 +1,12 @@
+{% if form.errors %}
+<div id="form-error" style="padding: 0pt 0.7em;" class="ui-state-error ui-corner-all">
+    <p>
+        <span style="float: left; margin-right: 0.3em;" class="ui-icon ui-icon-alert"></span>
+        <strong>Alert:</strong>
+        The operation could not be performed because one or more error(s) occurred.
+        <br/>
+        Please resubmit the form after making the following changes:
+    </p>
+</div>
+<br/>
+{% endif %}

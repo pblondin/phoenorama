@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<script type="text/javascript" src="/media/js/admin/RelatedObjectLookups.js"></script> 
+<script language="JavaScript">
+	jQuery(document).ready(function(){
+		$("#create-project-button").button();
+		// ADD CSS TO BUTTONS
+	    $('#actions').hover(function(){
+	        $(this).removeClass('ui-state-default').addClass('ui-state-focus');
+	    }, function(){
+	        $(this).removeClass('ui-state-focus').addClass('ui-state-default');
+	    });
+	});
+</script>
+<h2>View projects</h2>
+<table>
+	<thead>
+		<td>Name</td>
+		<td>Description</td>
+		<td>Create time</td>
+		<td>Target</td>
+		<td>Schedule</td>
+		<td>Actions</td>
+	</thead>
+	{% for project in projects %}
+	<tr>
+		<td>{{ project.name }}</td>
+		<td>{{ project.description }}</td>
+		<td>{{ project.create_time|date:"SHORT_DATE_FORMAT" }}</td>
+		<td>{{ project.target }}</td>
+		<td>{{ project.schedule }}</td>
+		<td class="ui-widget-header ui-corner-all ui-helper-clearfix">
+			<a href="/project/launch/{{ project.id }}" title="Launch" class="ui-icon ui-icon-power" style="display: inline-table;"/>
+			<a href="/project/configure/{{ project.id }}" title="Configure" class="ui-icon ui-icon-wrench" style="display: inline-table;"/>
+			<a href="/project/result/{{ project.id }}" title="View results" class="ui-icon ui-icon-image" style="display: inline-table;"/>
+			<a href="/project/delete/{{ project.id }}" title="Delete" class="ui-icon ui-icon-trash" style="display: inline-table;"/>
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}

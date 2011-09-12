@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<script language="JavaScript">
+	jQuery(document).ready(function(){
+		$( "#tabs" ).tabs({
+			//disabled: [ 1, 2, 3],
+			ajaxOptions: {
+				error: function( xhr, status, index, anchor ) {
+					$( anchor.hash ).html( "Couldn't load this tab. We'll try to fix this as soon as possible. " );
+				}
+			}
+		});
+		$("#tos-accept-button, #tos-not-accept-button").button();
+	});
+</script>
+
+<div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">Step 1</a></li>
+		<li><a href="#tabs-2">Step 2</a></li>
+		<li><a href="#tabs-3">Step 3</a></li>
+		<li><a href="#tabs-4">Step 4</a></li>
+	</ul>
+	<div id="tabs-1">
+		<p>{% include "management/tos.html" %}</p>
+		<table>
+		<form method="post" action=".">
+			{% csrf_token %}
+			{% include "form/form-error.html" %}
+			<tr>
+				<td>
+					<b>*  </b>{{ form.agreement }}<b>I have read and accepted the Service User Agreement.</b>
+					{% if form.agreement.errors %}
+					<td>
+					    <div style="padding: 0pt 0.7em;" class="ui-state-error ui-corner-all">
+					        <span style="float: left; margin-right: 0.3em;" class="ui-icon ui-icon-alert"></span>
+					        {{ form.agreement.errors|striptags }}
+					    </div>
+					</td>
+					{% endif %}
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<br />
+					<input id="tos-accept-button" type="submit" value="I Agree" />
+					<input id="tos-not-accept-button" type="submit" value="Do Not Accept" />
+					<input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
+				</td>
+			</tr>
+		</form>
+		</table>
+		
+	</div>
+	<div id="tabs-2"></div>
+	<div id="tabs-3"></div>
+	<div id="tabs-4"></div>
+</div>
+{% endblock %}

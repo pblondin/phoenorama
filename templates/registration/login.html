@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<script language="JavaScript">
+	jQuery(document).ready(function(){
+		$("#login-in-button").button();
+		$("#register-in-button").button();
+		$("#reset-button").button();
+	});
+</script>
+<table>
+<form method="post" action=".">
+	<input type="hidden" name="next" value="{{ next }}" />
+	{% csrf_token %}
+	{% include "form/form-error.html" %}
+	{% for field in form %}
+		<tr>
+			<td>{{ field.label_tag }}</td>
+			<td>{{ field }}</td>
+			{% include "form/field-error.html" %}
+		</tr>
+	{% endfor %}
+	<tr>
+		<td>
+			<input id="login-in-button" type="submit" value="{% trans 'Login' %}" />
+		</td>
+	</tr>
+</form>
+</table>
+
+<p>{% trans "Forgot password" %}? <a id="reset-button" href="{% url auth_password_reset %}">{% trans "Reset it" %}</a></p>
+<p>{% trans "Not member" %}? <a id="register-in-button" href="{% url registration_register %}">{% trans "Register" %}</a></p>
+{% endblock %}

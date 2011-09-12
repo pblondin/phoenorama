@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+	<html lang="en">
+	    <head>
+		<meta charset=utf-8 />
+		<title>jQuery Blend</title>
+		<style>
+			*{padding:0; border:0; margin:0;}
+			h2{font-size:16px; margin-bottom:5px; color:#555; font-weight:normal; font-family:verdana, arial, sans-serif;}
+			
+			#demo a{
+				display:block;
+				width:90px;
+				height:46px;
+				margin-right:3px;
+				float:left;
+				background-image:url(nav-sprite.png);
+				background-repeat:no-repeat;
+				cursor:pointer;
+				text-indent:-9999px;
+			}
+			#default, #example{clear:left; overflow:auto; margin-bottom:30px;}
+			#default_home{background-position:0 0;}
+			#default_home:hover,#default_home.hover{background-position:0 -48px;}
+			#default_blog{background-position:-90px 0;}
+			#default_blog:hover,#default_blog.hover{background-position:-90px -48px;}
+			#default_demo{background-position:-180px 0;}
+			#default_demo:hover,#default_demo.hover{background-position:-180px -48px;}
+			#default_about{background-position:-270px 0;}
+			#default_about:hover,#default_about.hover{background-position:-270px -48px;}
+			#default_services{background-position:-360px 0;}
+			#default_services:hover,#default_services.hover{background-position:-360px -48px;}
+			#default_contact{background-position:-450px 0;}
+			#default_contact:hover,#default_contact.hover{background-position:-450px -48px;}
+			
+			#example_home{background-position:0 0;}
+			#example_home:hover,#example_home.hover{background-position:0 -48px;}
+			#example_blog{background-position:-90px 0;}
+			#example_blog:hover,#example_blog.hover{background-position:-90px -48px;}
+			#example_demo{background-position:-180px 0;}
+			#example_demo:hover,#example_demo.hover{background-position:-180px -48px;}
+			#example_about{background-position:-270px 0;}
+			#example_about:hover,#example_about.hover{background-position:-270px -48px;}
+			#example_services{background-position:-360px 0;}
+			#example_services:hover,#example_services.hover{background-position:-360px -48px;}
+			#example_contact{background-position:-450px 0;}
+			#example_contact:hover,#example_contact.hover{background-position:-450px -48px;}
+		</style>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		<script src="jquery.blend-min.js"></script>
+		<script>
+			$(document).ready(function(){
+				$("#example a").blend();
+			});
+		</script>
+	</head>
+	<body>
+		<div id='demo'>
+			<div id="default">
+				<h2>Default CSS Rollovers - No JavaScript</h2>
+				<a href="#" id="default_home">Home</a>
+				<a href="#" id="default_blog">Blog</a>
+				<a href="#" id="default_demo">Demo</a>
+				<a href="#" id="default_about">About</a>
+				<a href="#" id="default_services">Services</a>
+				<a href="#" id="default_contact">Contact</a>
+			</div>
+		
+			<div id="example">
+				<h2>Blend: $(selector).blend();</h2>
+				<a href="#" id="example_home">Home</a>
+				<a href="#" id="example_blog">Blog</a>
+				<a href="#" id="example_demo">Demo</a>
+				<a href="#" id="example_about">About</a>
+				<a href="#" id="example_services">Services</a>
+				<a href="#" id="example_contact">Contact</a>
+			</div>
+		</div>
+	</body>
+</html>

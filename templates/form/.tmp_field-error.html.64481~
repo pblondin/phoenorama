@@ -1,0 +1,8 @@
+{% if field.errors %}
+<td>
+    <div style="padding: 0pt 0.7em;" class="ui-state-error ui-corner-all">
+        <span style="float: left; margin-right: 0.3em;" class="ui-icon ui-icon-alert"></span>
+        {{ field.errors|striptags }}
+    </div>
+</td>
+{% endif %}

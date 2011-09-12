@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<script language="JavaScript">
+	jQuery(document).ready(function(){
+		$("#create-schedule-button").button();
+		$("#id_first_time, #id_last_time").datepicker({
+			minDate: 0,
+		});
+	});
+</script>
+<h2>Add schedule</h2>
+<table>
+<form method="post" action="">
+	{% csrf_token %}
+	{% include "form/form-error.html" %}
+	{% for field in form %}
+	<tr>
+		<td>{{ field.label_tag }}</td>
+		<td>{{ field }}</td>
+		{% include "form/field-error.html" %}
+	</tr>	
+	{% endfor %}
+	<tr>
+		<td>
+			<input id="create-schedule-button" type="submit" value="Save" />
+		</td>
+	</tr>
+</form>
+</table>
+{% endblock %}

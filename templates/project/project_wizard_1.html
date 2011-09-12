@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<script language="JavaScript">
+	jQuery(document).ready(function(){
+		$( "#tabs" ).tabs({
+			//disabled: [ 1, 2, 3],
+			selected: 1,
+			ajaxOptions: {
+				error: function( xhr, status, index, anchor ) {
+					$( anchor.hash ).html( "Couldn't load this tab. We'll try to fix this as soon as possible. " );
+				}
+			}
+		});
+		$("#submit-button,").button();
+	});
+</script>
+
+<div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">Step 1</a></li>
+		<li><a href="#tabs-2">Step 2</a></li>
+		<li><a href="#tabs-3">Step 3</a></li>
+		<li><a href="#tabs-4">Step 4</a></li>
+	</ul>
+	<div id="tabs-1"></div>
+	<div id="tabs-2">
+		<table>
+		<form method="post" action=".">
+			{% csrf_token %}
+			{% include "form/form-error.html" %}
+			{% for field in form %}
+			<tr>
+				<td>{{ field.label_tag }}</td>
+				<td>{{ field }}</td>
+				{% include "form/field-error.html" %}
+			</tr>
+			{% endfor %}
+			<tr>
+				<td>
+					<input id="submit-button" type="submit" value="Save" />
+					<input type="hidden" name="{{ step_field }}" value="{{ step1 }}" />
+				</td>
+			</tr>
+		</form>
+		</table>
+		
+	</div>
+	<div id="tabs-3"></div>
+	<div id="tabs-4"></div>
+</div>
+{% endblock %}

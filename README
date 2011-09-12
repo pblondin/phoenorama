@@ -1,0 +1,117 @@
+
+Dependencies:
+	* Python 2.7.1 or >=
+	* Django 1.2.5 or >=
+	* zlib1g-dev
+	* libsqlite3-dev
+	* libssl-dev
+	
+Install zlib1g-dev and libsqlite3-dev
+	apt-get install zlib1g-dev libsqlite3-dev libssl-dev
+	
+Install Python 2.7.1:
+	cd /usr/local/src
+	wget http://python.org/ftp/python/2.7.1/Python-2.7.1.tgz
+	tar -xzvf Python-2.7.1.tgz
+	cd Python-2.7.1
+	./configure -with-threads -enable-shared
+	make
+	make install
+	ln -s /usr/local/lib/libpython2.7.so.1.0 /usr/lib
+	ln -s /usr/local/lib/libpython2.7.so /usr/lib
+	
+Django Apps:
+	* Django-South (intelligent schema and data migrations)
+		http://south.aeracode.org/docs/installation.html
+	* Django-Sentry (real-time logging for Django exceptions)
+		http://justcramer.com/django-sentry/install.html
+		
+Installation:
+	0. Install setuptools
+		a) wget http://pypi.python.org/packages/source/s/setuptools/setuptools-0.6c11.tar.gz#md5=7df2a529a074f613b509fb44feefe74e
+		b) tar -xzvf setuptools-0.6c11.tar.gz
+		c) cd setuptools-0.6c11
+		d) 
+	1. Install PIP (as a replacement for easy_install)
+		a) wget http://pypi.python.org/packages/source/p/pip/pip-0.8.2.tar.gz#md5=df1eca0abe7643d92b5222240bed15f6
+		b) tar -xzvf pip-0.8.2.tar.gz
+		c) cd pip-0.8.2
+		d) sudo python setup.py install
+	
+	2. Install Django
+		a) sudo pip install django
+	
+	3. Install Django apps
+		a) sudo pip install south
+		b) sudo pip install django-sentry
+		c) sudo pip install docutils
+		d) sudo pip install django-extensions
+		e) sudo pip install django-registration
+		f) sudo pip install 
+		
+
+###########################
+Django Apps in Phoenorama
+###########################
+
+management
+	-login, logout, register, profile, contact, admnistration, help, about, policy
+	
+scanning
+	-scan, schedule, tool, config
+	
+reporting
+	-report, customize, filter, override
+	
+infosec
+	-nvts, rss, advisories
+	
+###########################
+URLs mapping
+###########################
+
+
+
+###########################
+How to migrate a schema
+###########################
+
+python manage.py schemamigration --initial scanning
+python manage.py migrate scanning
+
+
+###########################
+Installing OpenVAS
+###########################
+
+http://www.openvas.org/install-packages.html#debian
+
+# To use the OBS packages via apt, you need to add a line like this into sources.list:
+deb http://download.opensuse.org/repositories/security:/OpenVAS:/STABLE:/v3/Debian_5.0/ ./
+
+# Add OBS GPG key
+wget http://download.opensuse.org/repositories/security:/OpenVAS:/STABLE:/v3/Debian_5.0/Release.key
+apt-key add Release.key
+
+# Install OpenVAS components
+apt-get install openvas-scanner openvas-manager openvas-client openvas-cli libopenvas3 openvas-administrator
+
+# Update NVT rules
+openvas-nvt-sync
+
+# Create the server certificate
+openvas-mkcert
+
+# Create a super-admin
+openvas-adduser
+
+# Start openvas-scanner
+/etc/init.d/openvas-scanner start
+
+# Run OpenVAS-Client in command line
+OpenVAS-Client -c /root/openvas/openvas.rc -T html -qx  127.0.0.1  9390  batch  batch1  /root/openvas/target  /var/www/html/openvas/results.html 
+
+OpenVAS-Client -T html -qx 127.0.0.1 9390 <user> <pass> /root/openvas/target /var/www/openvas/results.html
+
+
+

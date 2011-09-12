@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>View results for project: <i>{{ my_project }}</i></h2>
+<table>
+	<thead>
+		<td>ID</td>
+		<td>Status</td>
+		<td>Actions</td>
+	</thead>
+	{% for result in result_list %}
+	<tr>
+		<td>{{ result.id }}</td>
+		<td>{{ result.get_state_display }}</td>
+		<td class="ui-widget-header ui-corner-all ui-helper-clearfix">
+			<a href="/project/result/{{ my_project.id }}/{{ result.id }}" title="View result" class="ui-icon ui-icon-image" style="display: inline-table;"/>
+			<a href="#" title="Send report by email" class="ui-icon ui-icon-mail-closed" style="display: inline-table;"/>
+			<a href="#" title="Generate report" class="ui-icon ui-icon-script" style="display: inline-table;"/>
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}

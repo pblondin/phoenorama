@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+		<link rel="stylesheet" href="/css/cloudtag/stringball.css"	type="text/css" media="screen" charset="utf-8" />
+		<script type="text/javascript" src="/js/jquery.stringball.js"></script> 
+		<script language="JavaScript">
+			jQuery(document).ready(function(){
+				$("ul#stringball").fadeIn().stringball({
+					camd:1000, radi:200, speed:25, framerate:40
+				});
+			});
+		</script>
+		<div id="welcome">
+		    {% if user.is_authenticated %}
+			<h3>Welcome, {{ user.username }}. Thanks for logging in.</h3>
+		    {% else %}
+			<h3>Welcome, new user. Please log in.</h3>
+		    {% endif %}
+			<div id="intro">
+				<br />
+				phoe-no-ra-ma <i> /'fe,no,ra,ma/</i>
+			</div>
+		</div>
+		<div id="sections">
+		    <div id="subsection-left" style="margin-left: 20px;">
+		        <div id="slideshow" class="ui-widget-content" style="margin-left: 40px;">
+		            <div id="slidesContainer">
+		                <div class="slide">
+		                    <h2>Test1</h2>
+		                    <p>
+		                        <a href="/img/software/OpenVAS4-Structure.png" rel="Structure" title="Phoenorama Structure"><img src="/img/software/OpenVAS4-Structure.png" alt="About phoenorama's structure." width="215" height="145"/></a>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis sapien a nisl posuere consequat eget vel tellus. Nam velit massa, posuere nec auctor luctus, pretium ac nisi.
+		                    </p>
+		                </div>
+		                <div class="slide">
+		                    <h2>Test2</h2>
+		                    <p>
+		                        <a href="/img/software/OpenVAS4-Software.png" rel="Software" title="Phoenorama Software"><img src="/img/software/OpenVAS4-Software.png" alt="Aabout phoenorama's software." width="215" height="145"/></a>Pellentesque non elit viverra enim mattis gravida et a dolor. Curabitur justo ligula, pellentesque ut pulvinar nec, posuere porttitor dui.
+		                    </p>
+		                </div>
+		                <div class="slide">
+		                    <h2>Test3</h2>
+		                    <p>
+		                    <a href="/img/software/OpenVAS4-Protocols.png" rel="Protocols" title="Phoenorama Protocols"><img src="/img/software/OpenVAS4-Protocols.png" alt="About phoenorama's protocols." width="215" height="145"/></a>
+		                    <p>
+		                        Nulla tincidunt, nibh ac tincidunt venenatis, leo enim mattis ligula, nec dictum lectus sem quis quam. Curabitur sed lacus risus, nec commodo mauris.
+		                    </p>
+		                </div>
+		                <div class="slide">
+		                    <h2>Test4</h2>
+		                    <p>
+		                        Quisque tortor risus, accumsan id cursus at, bibendum et nisi. Donec tempus luctus fringilla. Nunc nec quam odio, id vulputate dolor. 
+		                    </p>
+		                </div>
+		            </div>
+		        </div>
+		        <div style="margin-left: 20px; margin-top:40px; width: 90%;">
+		            <p>
+		                <a href="/img/component_architecture.png" style="float: left; margin-right: 20px;" rel="Greenbone" title="OpenVAS Architecture"><img src="/img/component_architecture.png" alt="OpenVAS Architecture" width="350" height="320"/></a>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vitae tempus ligula. Integer porta mi non quam semper adipiscing. Nam eget metus ac sem congue porta. Nulla facilisi. Sed et leo ac ipsum tempus porttitor. Aliquam odio odio, congue eu gravida et, lobortis eget mi. Suspendisse egestas ipsum ac nisl mollis mollis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin tristique viverra elit et vehicula. Ut eget ipsum non nisi pulvinar luctus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+		            </p>
+		        </div>
+		    </div>
+		    <div id="subsection-right">
+		        <ul id="stringball">
+					<li><a href="#" id="buzz">Security</a></li>
+					<li><a href="#" id="tool">w3af</a></li>
+					<li><a href="#" id="buzz">Visualization</a></li>
+					<li><a href="#" id="tool">Nmap</a></li>
+					<li><a href="#" id="threat">SQL Injection</a></li>
+					<li><a href="#" id="tool">OpenVAS</a></li>
+					<li><a href="#" id="buzz">Open Source</a></li>
+					<li><a href="#" id="buzz">Mashup</a></li>
+					<li><a href="#" id="threat">Vulnerability</a></li>
+					<li><a href="#" id="buzz">Dashboard</a></li>
+					<li><a href="#" id="threat">XSS</a></li>
+					<li><a href="#" id="buzz">Reporting</a></li>
+					<li><a href="#" id="threat">CSRF</a></li>
+					<li><a href="#" id="buzz">Monitoring</a></li>
+					<li><a href="#" id="tool">Metasploit</a></li>
+					<li><a href="#" id="buzz">Scanning</a></li>
+					<li><a href="#" id="tech">JavaScript</a></li>
+					<li><a href="#" id="threat">Malware</a></li>
+					<li><a href="#" id="buzz">PCI</a></li>
+					<li><a href="#" id="tool">XSSer</a></li>
+					<li><a href="#" id="tool">Nikto</a></li>
+					<li><a href="#" id="threat">Exploit</a></li>
+				</ul>
+				<br /><br />
+				<div id="social">
+					<a href="#facebook" title="Facebook"><img src="/img/social/facebook.png" alt="Facebook"/></a>
+					<a href="#twitter" title="Twitter"><img src="/img/social/twitter.png" alt="Twitter"/></a>
+					<a href="#linkedin" title="Linkedin"><img src="/img/social/linkedin.png" alt="LinkedIn"/></a>
+					<a href="#rssfeed" title="RSS Feed"><img src="/img/social/rssfeed.png" alt="RSS Feed"/></a>
+		    	</div>
+			</div>
+		    <div class="ui-helper-clearfix"></div>
+		</div>
+{% endblock %}

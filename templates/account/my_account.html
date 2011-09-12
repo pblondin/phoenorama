@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+<script language="JavaScript">
+	jQuery(document).ready(function(){
+		$("#change-password-button, #create-project-button, #create-task-template-button, #create-schedule-button, #view-projects-button")
+			.button();
+	});
+</script>
+<h3>{{ user.username|capfirst }}'s account.</h3>
+<table>
+	<tr>
+		<td>Last login: </td>
+		<td>{{ user.last_login }}</td>
+	</tr>
+	<tr>
+		<td>Email: </td>
+		<td>{{ user.email }}</td>
+	</tr>
+</table>
+<br/>
+<a id="change-password-button" href="/account/password/change">Change password</a>
+<hr>
+<h3>Projects</h3>
+<ul>
+	<li><a id="view-projects-button" href="/project/">View projects</a></li>
+	<li><a id="create-project-button" href="/project/add/">Create a new project</a></li>
+	<li><a id="create-schedule-button" href="/project/add/schedule">Create a new schedule</a></li>
+	<li><a id="create-task-template-button" href="#">Create a new task template</a></li>
+</ul>
+<hr>
+
+{% endblock %}
+

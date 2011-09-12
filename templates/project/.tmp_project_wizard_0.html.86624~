@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<script language="JavaScript">
+	jQuery(document).ready(function(){
+		$("#submit-button").button();
+	});
+</script>
+<h2>Add project - Step {{ step }} of {{ step_count }}</h2>
+
+<table>
+	{{ form }}
+</table>
+
+<table>
+<form method="post" action=".">
+	{% csrf_token %}
+	{% include "form/form-error.html" %}
+	{% for field in form %}
+	<tr>
+		<td>{{ field.label_tag }}</td>
+		<td>{{ field }}</td>
+		{% include "form/field-error.html" %}
+	</tr>	
+	{% endfor %}
+	<tr>
+		<td>
+			<input id="submit-button" type="submit" value="Save" />
+			<input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
+		</td>
+	</tr>
+	{{ previous_fields|safe }}
+</form>
+</table>
+{% endblock %}

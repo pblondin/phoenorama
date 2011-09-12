@@ -1,0 +1,52 @@
+@CHARSET "utf-8";
+
+/*--------------------------------------*/
+/*StringBall base                       */
+/*--------------------------------------*/
+ul#stringball{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+	position:relative;
+}
+ul#stringball li{
+	position:absolute;
+	margin:0;
+	padding:0;
+}
+
+/*--------------------------------------*/
+/*StringBall design                     */
+/*--------------------------------------*/
+ul#stringball{
+	width:300px;
+	height:300px;
+	font-size:30px;
+	font-weight:bold;
+}
+ul#stringball li a{
+	text-decoration:none;
+	color:#f90;
+	border:none;
+}
+
+ul#stringball li a#tech{
+	color:#ffffff;
+}
+
+ul#stringball li a#tool{
+	color:#cc9999;
+}
+
+ul#stringball li a#threat{
+	color:#f41010;
+}
+
+ul#stringball li a#buzz{
+	color:#f90;
+}
+
+ul#stringball li a:hover{
+	padding:5px;
+	border:solid 1px;
+}
