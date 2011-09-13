@@ -39,8 +39,8 @@ class Openvas(threading.Thread):
     '''
     HOST = '127.0.0.1'
     PORT = 9390
-    USER = 'root'
-    PASSWORD = 'courge990.'
+    USER = 'user'
+    PASSWORD = 'password'
     FORMAT = 'nbe'
     PATH = './resources/results/'
     
