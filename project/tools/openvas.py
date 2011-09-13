@@ -35,12 +35,12 @@ class Openvas(threading.Thread):
     Threaded OpenVAS scan
        
     Example: 
-        OpenVAS-Client -T nbe -qx 127.0.0.1 9390 root courge990. /root/openvas/target /var/www/openvas/results.nbe
+        OpenVAS-Client -T nbe -qx 127.0.0.1 9390 <user> <pass> /root/openvas/target /var/www/openvas/results.nbe
     '''
     HOST = '127.0.0.1'
     PORT = 9390
-    USER = 'root'
-    PASSWORD = 'courge990.'
+    USER = 'user'
+    PASSWORD = 'password'
     FORMAT = 'nbe'
     PATH = './resources/results/'
     
