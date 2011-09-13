@@ -6,12 +6,11 @@
 <pydev_property name="org.python.pydev.PYTHON_PROJECT_VERSION">python 2.7</pydev_property>
 <pydev_variables_property name="org.python.pydev.PROJECT_VARIABLE_SUBSTITUTION">
 <key>DJANGO_MANAGE_LOCATION</key>
-<value>src/manage.py</value>
+<value>manage.py</value>
 <key>DJANGO_SETTINGS_MODULE</key>
-<value>Phoenorama_FE.settings</value>
+<value>settings</value>
 </pydev_variables_property>
 <pydev_pathproperty name="org.python.pydev.PROJECT_SOURCE_PATH">
-<path>/Phoenorama_FE/src</path>
-<path>/Phoenorama_FE/test</path>
+<path>/phoenorama</path>
 </pydev_pathproperty>
 </pydev_project>
