@@ -6,7 +6,7 @@
 APPS="project account management infosec admin"
 OUTPUT=$1
 
-python manage.py graph_models $APPS -l dot > $OUTPUT.dot
+python ../manage.py graph_models $APPS -l dot > $OUTPUT.dot
 dot -T jpg $OUTPUT.dot > $OUTPUT.jpg
 rm -f $OUTPUT.dot
 
